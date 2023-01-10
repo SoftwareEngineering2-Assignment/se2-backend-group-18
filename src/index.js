@@ -39,8 +39,4 @@ app.listen(port, () =>
 // eslint-disable-next-line no-console
   console.log(`NodeJS Server listening on port ${port}. \nMode: ${process.env.NODE_ENV}`));
 
-  app.get("/",(req,res,ntxt) => {
-    console.log(process.env);
-    return res.send("Hello world!\n")
-});
 module.exports = app;
