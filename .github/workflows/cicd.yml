@@ -18,7 +18,7 @@ jobs:
          host: ${{ secrets.SSH_HOST }}
          username: ${{ secrets.SSH_USER }}
          password: ${{secrets.SSH_PASSWORD }}
-         ports: ${{secrets.SSH_PORT }}
+         port: ${{secrets.SSH_PORT }}
          script: |
 	 	cd ~/se2/18/se2-backend-group-18
 	        git reset --hard origin/main
