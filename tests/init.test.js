@@ -9,8 +9,7 @@ const listen = require('test-listen');
 const app = require('../src/index');
 const {jwtSign} = require('../src/utilities/authentication/helpers');
 
-require('dotenv').config(app.env);
-console.log(process.env);
+
 
 test.before(async (t) => {
   t.context.server = http.createServer(app);
