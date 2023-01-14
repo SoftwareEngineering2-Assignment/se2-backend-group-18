@@ -3,7 +3,7 @@ name: ci
 on: push
 
 env:
-  PORT: 3018
+  PORT: 3000
   SERVER_SECRET: ${{ secrets.SERVER_SECRET }}
   MONGODB_URI: ${{ secrets.MONGODB_URI }}
   PLATFORM_URI: 'http://localhost:3002'
@@ -34,3 +34,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd ~/se2/9/se2-backend-group-18
+            git reset --hard origin/main
+            git pull https://${{ secrets.CLONE_TOKEN }}@github.com/SoftwareEngineering2-Assignment/se2-backend-group-18 main
+            bash -ci 'npm install'
+            bash -ci 'pm2 restart se2-backend-group-18'
