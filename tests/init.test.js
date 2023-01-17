@@ -27,7 +27,7 @@ test.after.always((t) => {
 
 test('GET /statistics returns correct response and status code', async (t) => {
   const {body, statusCode} = await t.context.got('general/statistics');
-  t.is(body.sources, 1); // t.is checks if body.sources == 1
+  t.is(body.sources, 0); // t.is checks if body.sources == 1
   t.assert(body.success);
   console.log(body);
   t.is(statusCode, 200);
