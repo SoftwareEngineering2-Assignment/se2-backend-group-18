@@ -29,10 +29,21 @@ test('GET /statistics returns correct response and status code', async (t) => {
   const {body, statusCode} = await t.context.got('general/statistics');
   t.is(body.sources, 0); // t.is checks if body.sources == 1
   t.assert(body.success);
-  console.log(body);
   t.is(statusCode, 200);
 });
 
+test('GET /test-url returns correct response and status code', async (t) => {
+  const {body, statusCode} = await t.context.got('general/test-url');
+  console.log(body);
+  t.is(body.status, 500); // t.is checks if body.sources == 200
+  t.is(statusCode, 200);
+});
+
+test('GET /test-url-request returns correct response and status code', async (t) => {
+  const {body} = await t.context.got('general/test-url-request');
+  console.log(body);
+  t.is(body.status, 500); // t.is checks if body.sources == 200
+});
 
 test('GET /sources returns correct response and status code', async (t) => {
   const token = jwtSign({id: 1});
