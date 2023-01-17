@@ -27,19 +27,69 @@ test.after.always((t) => {
 test('GET /dashboards returns correct response and status code', async (t) => {
   const {body} = await t.context.got('dashboards/dashboards');
   console.log(body);
-  t.assert(body.success); // t.is checks if body.status == 200
+  t.assert(body.success); // t.is checks if body.status == true
 });
 
-// Test for post req dashboards/create-dashboards
+// Test for post req dashboards/create-dashboard
 test('GET /dashboards returns correct response and status code', async (t) => {
   const {body} = await t.context.got('dashboards/create-dashboard');
   console.log(body);
-  t.is(body.status, 200); // t.is checks if body.status == 200
+  t.assert(body.success); // t.is checks if body.success == true
 });
 
-// Test for post req dashboards/delete-dashboards
+// Test for post req dashboards/delete-dashboard
 test('GET /dashboards/delete-dashboards returns correct response and status code', async (t) => {
   const {body} = await t.context.got('dashboards/delete-dashboard');
   console.log(body);
-  t.is(body.status, 200); // t.is checks if body.status == 200
+  t.assert(body.success); // t.is checks if body.success == true
+});
+
+// Test for post req dashboards/dashboard
+test('GET /dashboards/delete-dashboards returns correct response and status code', async (t) => {
+  const {body} = await t.context.got('dashboards/dashboard');
+  console.log(body);
+  t.assert(body.success); // t.is checks if body.success == true
+});
+
+// Test for post req dashboards/save-dashboard
+test('GET /dashboards/delete-dashboards returns correct response and status code', async (t) => {
+  const {body} = await t.context.got('dashboards/save-dashboard');
+  console.log(body);
+  t.assert(body.success); // t.is checks if body.success == true
+});
+
+// Test for post req dashboards/clone-dashboard
+test('GET /dashboards/delete-dashboards returns correct response and status code', async (t) => {
+  const {body} = await t.context.got('dashboards/clone-dashboard');
+  console.log(body);
+  t.assert(body.success); // t.is checks if body.success == true
+});
+
+
+// Test for post req dashboards/check-password-needed
+test('GET /dashboards/delete-dashboards returns correct response and status code', async (t) => {
+  const {body} = await t.context.got('dashboards/check-password-needed');
+  console.log(body);
+  t.assert(body.success); // t.is checks if body.success == true
+});
+
+// Test for post req dashboards/check-password
+test('GET /dashboards/delete-dashboards returns correct response and status code', async (t) => {
+  const {body} = await t.context.got('dashboards/check-password');
+  console.log(body);
+  t.assert(body.success); // t.is checks if body.success == true
+});
+
+// Test for post req dashboards/share-dashboard
+test('GET /dashboards/delete-dashboards returns correct response and status code', async (t) => {
+  const {body} = await t.context.got('dashboards/share-dashboard');
+  console.log(body);
+  t.assert(body.success); // t.is checks if body.success == true
+});
+
+// Test for post req dashboards/change-password
+test('GET /dashboards/delete-dashboards returns correct response and status code', async (t) => {
+  const {body} = await t.context.got('dashboards/change-password');
+  console.log(body);
+  t.assert(body.success); // t.is checks if body.success == true
 });
