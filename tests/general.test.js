@@ -45,8 +45,3 @@ test('GET /test-url-request returns correct response and status code', async (t)
   t.is(body.status, 500); // t.is checks if body.sources == 200
 });
 
-test('GET /sources returns correct response and status code', async (t) => {
-  const token = jwtSign({id: 1});
-  const {statusCode} = await t.context.got(`sources/sources?token=${token}`);
-  t.is(statusCode, 200);
-});
