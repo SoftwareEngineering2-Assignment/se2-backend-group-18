@@ -1,17 +1,19 @@
 /* eslint-disable import/no-unresolved */
 require('dotenv').config();
 
-const http = require('node:http');
+const http = require('node:http');  // Library so i can build a server with express
 const test = require('ava').default;
-const got = require('got');
-const listen = require('test-listen');
+const got = require('got'); // Library so i can make requests
+const listen = require('test-listen'); // In testing environment, build a test server to send request
 
 const app = require('../src/index');
 const {jwtSign} = require('../src/utilities/authentication/helpers');
 
 require('dotenv').config(app.env);
-console.log(process.env);
+//console.log(process.env);
 
+// This runs before everything else
+// t is an object from ava
 test.before(async (t) => {
   t.context.server = http.createServer(app);
   t.context.prefixUrl = await listen(t.context.server);
