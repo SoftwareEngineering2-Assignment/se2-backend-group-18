@@ -32,14 +32,14 @@ test('GET /dashboards returns correct response and status code', async (t) => {
 
 // Test for post req dashboards/create-dashboards
 test('GET /dashboards returns correct response and status code', async (t) => {
-  const {body} = await t.context.got('dashboards/create-dashboards');
+  const {body} = await t.context.got('dashboards/create-dashboard');
   console.log(body);
   t.is(body.status, 200); // t.is checks if body.status == 200
 });
 
 // Test for post req dashboards/delete-dashboards
 test('GET /dashboards/delete-dashboards returns correct response and status code', async (t) => {
-  const {body} = await t.context.got('dashboards/delete-dashboards');
+  const {body} = await t.context.got('dashboards/delete-dashboard');
   console.log(body);
   t.is(body.status, 200); // t.is checks if body.status == 200
 });
