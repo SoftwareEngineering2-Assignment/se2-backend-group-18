@@ -7,7 +7,6 @@ const got = require('got'); // Library so i can make requests
 const listen = require('test-listen'); // In testing environment, build a test server to send request
 
 const app = require('../src/index');
-const {jwtSign} = require('../src/utilities/authentication/helpers');
 
 require('dotenv').config(app.env);
 //console.log(process.env);
@@ -32,16 +31,38 @@ test('GET /statistics returns correct response and status code', async (t) => {
   t.is(statusCode, 200);
 });
 
+// Test for correct response of status in test-url
 test('GET /test-url returns correct response and status code', async (t) => {
-  const {body, statusCode} = await t.context.got('general/test-url');
-  console.log(body);
-  t.is(body.status, 500); // t.is checks if body.sources == 200
+  const test_url = "https://se2-frontend-18.netlify.app/";
+  const {body, statusCode} = await t.context.got('general/test-url?url=${test_url}');
+  t.assert(body.active);
   t.is(statusCode, 200);
 });
 
-test('GET /test-url-request returns correct response and status code', async (t) => {
-  const {body} = await t.context.got('general/test-url-request');
-  console.log(body);
-  t.is(body.status, 500); // t.is checks if body.sources == 200
+// Test for correct response of status in test-url with a wrong url
+test('GET /test-url returns wrong response and status code', async (t) => {
+  const wrong_url = "htsfrontend-18.netlify.app/";
+  const {body, statusCode} = await t.context.got('general/test-url?url=${wrong_url}');
+  //console.log(body);
+  t.assert(!body.active);
+  t.is(statusCode, 500);
 });
 
+
+// Test for correct response of status in test-url-request 
+test('GET /test-url-request returns correct response and status code', async (t) => {
+  const test_url = "https://se2-frontend-18.netlify.app/";
+  const type = "GET";
+  const {body} = await t.context.got('general/test-url-request?url=${worng_url}&url=${type}');
+  //console.log(body);
+  t.is(body.status, 200); // t.is checks if body.sources == 200
+});
+
+// Test for correct response of status in test-url-request with wrong url and type
+test('GET /test-url-request returns wrong response and status code', async (t) => {
+  const wrong_url = "https://frontend-18.netlify.app/";
+  const type = "T";
+  const {body} = await t.context.got('general/test-url-request?url=${worng_url}&url=${type}');
+  //console.log(body);
+  t.is(body.status, 500); // t.is checks if body.sources == 200
+});
