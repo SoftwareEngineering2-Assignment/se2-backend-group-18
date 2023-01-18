@@ -27,6 +27,8 @@ jobs:
         run: npm run test2
       - name: Run test3
         run: npm run test3
+      - name: Run test4
+        run: npm run test4
         
   cd:
     runs-on: ubuntu-latest
