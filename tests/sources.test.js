@@ -34,28 +34,28 @@ test('GET /sources returns correct response and status code', async (t) => {
 
 
 // Test for post req sources/create-source
-test('GET /sources returns correct response and status code', async (t) => {
+test('GET /create-sources returns correct response and status code', async (t) => {
   const token = jwtSign({id: 1});
   const {statusCode} = await t.context.got(`sources/create-source?token=${token}`);
   t.assert(success);
 });
 
 // Test for post req sources/change-source
-test('GET /sources returns correct response and status code', async (t) => {
+test('GET /change-sources returns correct response and status code', async (t) => {
   const token = jwtSign({id: 1});
   const {statusCode} = await t.context.got(`sources/change-source?token=${token}`);
   t.assert(success);
 });
 
 // Test for post req sources/delete-source
-test('GET /sources returns correct response and status code', async (t) => {
+test('GET /delete-sources returns correct response and status code', async (t) => {
   const token = jwtSign({id: 1});
   const {statusCode} = await t.context.got(`sources/delete-source?token=${token}`);
   t.assert(success);
 });
 
 // Test for post req sources/check-sources
-test('GET /sources returns correct response and status code', async (t) => {
+test('GET /check-sources returns correct response and status code', async (t) => {
   const token = jwtSign({id: 1});
   const {statusCode} = await t.context.got(`sources/check-sources?token=${token}`);
   t.assert(success);
