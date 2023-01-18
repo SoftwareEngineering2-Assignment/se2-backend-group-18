@@ -28,7 +28,7 @@ test.after.always((t) => {
 test('GET /dashboards returns correct response and status code', async (t) => {
   const token = authtoken;
   const { body, statusCode } = await t.context.got(`dashboards/dashboards?token=${token}`);
-  console.log(body);
+  //console.log(body);
   t.assert(body.success);
   t.is(statusCode, 200);
   //console.log(body.dashboards);
