@@ -33,36 +33,37 @@ test('GET /statistics returns correct response and status code', async (t) => {
 
 // Test for correct response of status in test-url
 test('GET /test-url returns correct response and status code', async (t) => {
-  const test_url = "https://se2-frontend-18.netlify.app/";
-  const {body, statusCode} = await t.context.got('general/test-url?url=${test_url}');
+  const test_url = "https://frontend-team-18.netlify.app/";
+  const {body, statusCode} = await t.context.got(`general/test-url?url=${test_url}`);
+  //console.log(body);
   t.assert(body.active);
   t.is(statusCode, 200);
 });
 
 // Test for correct response of status in test-url with a wrong url
-test('GET /test-url returns wrong response and status code', async (t) => {
-  const wrong_url = "htsfrontend-18.netlify.app/";
-  const {body, statusCode} = await t.context.got('general/test-url?url=${wrong_url}');
+test('GET /test-url with wrong ,response and status code', async (t) => {
+  const wrong_url = "http//rontend-team-18.netlify.app/";
+  const {body, statusCode} = await t.context.got(`general/test-url?url=${wrong_url}`);
   //console.log(body);
   t.assert(!body.active);
-  t.is(statusCode, 500);
+  t.is(body.status, 500);
 });
 
 
 // Test for correct response of status in test-url-request 
 test('GET /test-url-request returns correct response and status code', async (t) => {
-  const test_url = "https://se2-frontend-18.netlify.app/";
+  const test_url = "https://frontend-team-18.netlify.app/";
   const type = "GET";
-  const {body} = await t.context.got('general/test-url-request?url=${worng_url}&url=${type}');
+  const {body} = await t.context.got(`general/test-url-request?url=${test_url}&type=${type}`);
   //console.log(body);
   t.is(body.status, 200); // t.is checks if body.sources == 200
 });
 
 // Test for correct response of status in test-url-request with wrong url and type
 test('GET /test-url-request returns wrong response and status code', async (t) => {
-  const wrong_url = "https://frontend-18.netlify.app/";
+  const wrong_url = "http//rontend-team-18.netlify.app/";
   const type = "T";
-  const {body} = await t.context.got('general/test-url-request?url=${worng_url}&url=${type}');
+  const {body} = await t.context.got('general/test-url-request?url=${worng_url}&type=${type}');
   //console.log(body);
   t.is(body.status, 500); // t.is checks if body.sources == 200
 });
