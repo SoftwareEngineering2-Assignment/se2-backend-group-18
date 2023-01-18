@@ -25,15 +25,6 @@ test.after.always((t) => {
   t.context.server.close();
 });
 
-test('GET /dashboards returns correct response and status code', async (t) => {
-  const token = authtoken;
-  const { body, statusCode } = await t.context.got(`dashboards/dashboards?token=${token}`);
-  //console.log(body);
-  t.assert(body.success);
-  t.is(statusCode, 200);
-  //console.log(body.dashboards);
-});
-/*
 // Test for post req dashboards/dashboards
 test('GET /dashboards returns correct response and status code', async (t) => {
   const token = authtoken;
@@ -53,18 +44,74 @@ test('POST /dashboards returns correct response and status code', async (t) => {
 
 // Test for post req dashboards/delete-dashboard
 test('GET /dashboards/delete-dashboards returns correct response and status code', async (t) => {
-  const {body} = await t.context.got('dashboards/delete-dashboard');
+  const token = authtoken;
+  const {body, statusCode} = await t.context.got(`dashboards/delete-dashboard?token=${token}`,{ json: { dbid }  }).json();
   console.log(body);
-  t.assert(body.success); // t.is checks if body.success == true
+  if (body.status) {
+    t.is(body.status, 409);
+  }
+  //if body.status == undefined so the dashboard was found
+  else {
+    t.assert(body.success);
+    t.is(statusCode, 200);
+    t.is(body.dashboard.name, 'dummyDashboard0');
+  }
 });
 
-// Test for post req dashboards/dashboard
-test('GET /dashboards/delete-dashboards returns correct response and status code', async (t) => {
-  const {body} = await t.context.got('dashboards/dashboard');
-  console.log(body);
-  t.assert(body.success); // t.is checks if body.success == true
+// Test for post req dashboards/dashboard with correct id
+test('GET /dashboards/dashboard returns correct response and status code', async (t) => {
+  const token = authtoken;
+  const wrongid = '2341234'
+  const {body, statusCode} = await t.context.got(`dashboards/dashboard?token=${token}&id=${dbid}`);
+  if (body.status) {
+    t.is(body.status, 409);
+  }
+  //if body.status == undefined then dashboard was found
+  else {
+    t.assert(body.success);
+    t.is(statusCode, 200);
+    t.is(body.dashboard.name, 'dummyDashboard0');
+  }
+  //console.log(body);
 });
 
+// Test for post req dashboards/dashboard with wrong id
+test('GET /dashboards/dashboard wrong id', async (t) => {
+  const token = authtoken;
+  const wrongid = '2341234'
+  const {body, statusCode} = await t.context.got(`dashboards/dashboard?token=${token}&id=${wrongid}`);
+  if (body.status) {
+    t.is(body.status, 409);
+  }
+  //if body.status == undefined then dashboard was found
+  else {
+    t.assert(body.success);
+    t.is(statusCode, 200);
+    t.is(body.dashboard.name, 'dummyDashboard0');
+  }
+  //console.log(body);
+});
+
+test('POST /save-dashboard returns correct response and status code', async t => {
+  const token = authtoken;
+  const layout = [];
+  const items = {};
+  const nextId = 3;
+
+  const body = await t.context.got.post(`dashboards/save-dashboard?token=${token}`, {
+    json: { dbid, layout, items, nextId }
+  }).json();
+  t.assert(body.success);
+
+  const wrongid = '2341234'
+  const body2 = await t.context.got.post(`dashboards/save-dashboard?token=${token}`, {
+    json: { wrongid, layout, items, nextId }
+  }).json();
+
+  t.is(body2.status, 409);
+});
+
+/*
 // Test for post req dashboards/save-dashboard
 test('GET /dashboards/delete-dashboards returns correct response and status code', async (t) => {
   const {body} = await t.context.got('dashboards/save-dashboard');
