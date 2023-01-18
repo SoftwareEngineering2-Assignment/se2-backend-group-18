@@ -11,7 +11,7 @@ env:
   SERVER_EMAIL: "karanikio@auth.gr"
   SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
   AUTHTOKEN: ${{secrets.AUTHTOKEN}}
-  USERPASSWORD: ${{USERPASSWORD}}
+  USERPASSWORD: ${{secrets.USERPASSWORD}}
 
 jobs:
   ci:
