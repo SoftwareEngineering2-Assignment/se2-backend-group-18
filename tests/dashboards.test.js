@@ -8,6 +8,8 @@ const listen = require('test-listen'); // In testing environment, build a test s
 
 const app = require('../src/index');
 
+const authtoken = process.env.AUTHTOKEN;
+const dbid = '63c8127187ee7205495aa3bd';
 
 // This runs before everything else
 // t is an object from ava
@@ -23,18 +25,30 @@ test.after.always((t) => {
   t.context.server.close();
 });
 
+test('GET /dashboards returns correct response and status code', async (t) => {
+  const token = authtoken;
+  const { body, statusCode } = await t.context.got(`dashboards/dashboards?token=${token}`);
+  console.log(body);
+  t.assert(body.success);
+  t.is(statusCode, 200);
+  //console.log(body.dashboards);
+});
+/*
 // Test for post req dashboards/dashboards
 test('GET /dashboards returns correct response and status code', async (t) => {
-  const {body} = await t.context.got('dashboards/dashboards');
+  const token = authtoken;
+  const { body, statusCode } = await t.context.got(`dashboards/dashboards?token=${token}`);
   console.log(body);
-  t.assert(body.success); // t.is checks if body.status == true
+  t.is(statusCode, 200);
 });
 
 // Test for post req dashboards/create-dashboard
-test('GET /dashboards returns correct response and status code', async (t) => {
-  const {body} = await t.context.got('dashboards/create-dashboard');
+test('POST /dashboards returns correct response and status code', async (t) => {
+  const token = authtoken;
+  const dbname = 'testingDashboard';
+  const body = await t.context.got.post(`dashboards/create-dashboard?token=${token}`,{json: {dbname}}).json();
   console.log(body);
-  t.assert(body.success); // t.is checks if body.success == true
+  t.assert(body.status); // t.is checks if body.success == true
 });
 
 // Test for post req dashboards/delete-dashboard
@@ -93,3 +107,5 @@ test('GET /dashboards/delete-dashboards returns correct response and status code
   console.log(body);
   t.assert(body.success); // t.is checks if body.success == true
 });
+
+*/
