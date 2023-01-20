@@ -8,6 +8,8 @@ const User = require('../models/user');
 const Dashboard = require('../models/dashboard');
 const Source = require('../models/source');
 
+/* General routes for the platform */
+
 router.get('/statistics',
   async (req, res, next) => {
     try {
