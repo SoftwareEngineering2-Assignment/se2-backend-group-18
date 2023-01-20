@@ -7,7 +7,7 @@ const router = express.Router();
 
 const Dashboard = require('../models/dashboard');
 const Source = require('../models/source');
-
+/* routes for the dashboards */
 router.get('/dashboards',
   authorization,
   async (req, res, next) => {
@@ -31,7 +31,7 @@ router.get('/dashboards',
       return next(err.body);
     }
   });
-
+/* routes to create a dashboard */
 router.post('/create-dashboard', 
   authorization,
   async (req, res, next) => {
@@ -58,7 +58,7 @@ router.post('/create-dashboard',
       return next(err.body);
     }
   }); 
-
+/* routes to delete a dashboard */
 router.post('/delete-dashboard', 
   authorization,
   async (req, res, next) => {
@@ -77,7 +77,7 @@ router.post('/delete-dashboard',
       return next(err.body);
     }
   }); 
-
+/* routes to return a dashboard */
 router.get('/dashboard',
   authorization,
   async (req, res, next) => {
@@ -114,7 +114,7 @@ router.get('/dashboard',
       return next(err.body);
     }
   });
-
+/* routes to save a dashboard */
 router.post('/save-dashboard', 
   authorization,
   async (req, res, next) => {
@@ -140,7 +140,7 @@ router.post('/save-dashboard',
       return next(err.body);
     }
   }); 
-
+/* routes to clone a dashboard */
 router.post('/clone-dashboard', 
   authorization,
   async (req, res, next) => {
@@ -170,7 +170,7 @@ router.post('/clone-dashboard',
       return next(err.body);
     }
   }); 
-
+/* routes to check a dashboard */
 router.post('/check-password-needed', 
   async (req, res, next) => {
     try {
@@ -231,7 +231,7 @@ router.post('/check-password-needed',
       return next(err.body);
     }
   }); 
-
+/* routes to check a password */
 router.post('/check-password', 
   async (req, res, next) => {
     try {
@@ -269,7 +269,7 @@ router.post('/check-password',
       return next(err.body);
     }
   }); 
-
+/* routes to save a dashboard */
 router.post('/share-dashboard', 
   authorization,
   async (req, res, next) => {
@@ -296,7 +296,7 @@ router.post('/share-dashboard',
       return next(err.body);
     }
   }); 
-
+/* routes to change a password */
 router.post('/change-password', 
   authorization,
   async (req, res, next) => {
