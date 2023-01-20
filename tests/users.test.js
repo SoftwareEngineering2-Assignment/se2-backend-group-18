@@ -41,7 +41,7 @@ test('POST /authenticate returns correct response and status code', async (t) =>
   const username = 'usertesting';
   const password = userpassword;
   const body = await t.context.got.post('users/authenticate',{json: {username, password}}).json();
-  //console.log(body);
+  console.log(body);
   t.is(body.user.username, 'usertesting');
 });
 
