@@ -14,7 +14,6 @@ require('dotenv').config(app.env);
 
 const userpassword = process.env.USERPASSWORD;
 const authtoken = process.env.AUTHTOKEN;
-console.log(authtoken);
 // This runs before everything else
 // this an object from ava
 test.before(async (t) => {
