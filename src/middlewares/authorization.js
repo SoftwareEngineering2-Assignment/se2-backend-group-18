@@ -3,6 +3,8 @@ const {path, ifElse, isNil, startsWith, slice, identity, pipe} = require('ramda'
 
 const secret = process.env.SERVER_SECRET;
 
+/* Authorization to connect to the database and fetch data */
+
 module.exports = (req, res, next) => {
   /**
      * @name authorization
