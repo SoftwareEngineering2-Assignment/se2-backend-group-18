@@ -5,7 +5,7 @@ const {passwordDigest, comparePassword} = require('../utilities/authentication/h
 const {constants: {min}} = require('../utilities/validation');
 
 mongoose.pluralize(null);
-
+/* schema for user in database mongodb */
 const UserSchema = new mongoose.Schema(
   {
     email: {
