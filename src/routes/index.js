@@ -6,7 +6,7 @@ const general = require('./general');
 const root = require('./root');
 
 const router = express.Router();
-
+/* main index for all routes */
 router.use('/users', users);
 router.use('/sources', sources);
 router.use('/dashboards', dashboards);
