@@ -5,6 +5,8 @@ const {passwordDigest, comparePassword} = require('../utilities/authentication/h
 
 mongoose.pluralize(null);
 
+/* models for database of dashborads */
+
 const DashboardSchema = new mongoose.Schema(
   {
     name: {
