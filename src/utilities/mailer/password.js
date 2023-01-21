@@ -1,11 +1,17 @@
+ /*
+ This script exports a function that creates and returns an email containing a password reset link.
+ The link is constructed using the token passed to the function and an environment variable.
+ The email also includes the platform's logo and some text explaining the password reset process.
+ */
+
 const baseUrl = process.env.PLATFORM_URI;
 const logo = `${process.env.SERVER_URI}/logo.png`;
 const link = (token) => `${baseUrl}/reset-password?token=${token}`;
 
-/**
- * Creates and returns an email with a password reset token. The parameters given are the
- * platform's logo and the reset token needed for chaning the password.
- */
+/*
+Creates and returns an email with a password reset token. The parameters given are the
+platform's logo and the reset token needed for chaning the password.
+*/
 
 module.exports = (token) => (`
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd>
