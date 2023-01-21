@@ -1,3 +1,9 @@
+/* 
+This script is an Express.js router that exports a series of routes for handling requests related to "Dashboard" objects. It includes routes for getting all
+dashboards, creating a new dashboard, deleting a dashboard, returning a specific dashboard, and saving changes to a dashboard. These routes are protected by
+an authorization middleware, which is used to ensure that only authorized users can access them.
+*/
+
 /* eslint-disable max-len */
 const express = require('express');
 const mongoose = require('mongoose');
