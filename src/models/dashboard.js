@@ -1,3 +1,8 @@
+/*
+This script defines a Mongoose schema for a "Dashboard" object, which has fields such as
+"name", "layout", "items", "nextId", "password", "shared", "views", "owner", and "createdAt". 
+*/
+
 /* eslint-disable func-names */
 const mongoose = require('mongoose');
 const beautifyUnique = require('mongoose-beautiful-unique-validation');
