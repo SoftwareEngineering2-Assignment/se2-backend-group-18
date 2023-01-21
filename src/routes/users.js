@@ -1,3 +1,10 @@
+/*
+This script is a set of routes for an Express.js server that handle user registration,
+authentication, password reset and change password. The routes uses middleware for
+validation and authorization, utility functions for signing JWT tokens and sending email,
+and models for User, Reset.
+*/
+
 const express = require('express');
 const {validation, authorization} = require('../middlewares');
 const {helpers: {jwtSign}} = require('../utilities/authentication');
