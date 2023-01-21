@@ -1,3 +1,11 @@
+/*
+This script exports an express Router object which contains several routes for handling
+CRUD operations for "Source" objects. The routes include handling requests for getting
+all sources, creating a new source, editing a source, deleting a source, and handling
+errors that may occur during the process. All routes have an authorization middleware
+that will ensure that the user is authorized to access the route.
+*/
+
 /* eslint-disable max-len */
 const express = require('express');
 const mongoose = require('mongoose');
