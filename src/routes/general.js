@@ -1,3 +1,10 @@
+/*
+This script exports an Express.js router that contains a number of routes for getting data from the server.
+It includes routes for getting statistics on the number of users, dashboards, views, and sources on the platform,
+as well as routes for testing the status of a URL, and for sending different types of requests to a given URL.
+These routes use the Mongoose library to interact with MongoDB and the "got" library for sending HTTP requests.
+*/
+
 /* eslint-disable max-len */
 const express = require('express');
 const got = require('got');
