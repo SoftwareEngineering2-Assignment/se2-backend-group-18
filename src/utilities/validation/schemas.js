@@ -1,3 +1,14 @@
+/*
+This script exports an object containing several Yup validation schemas,
+which can be used to validate user input, such as email, username, and password.
+The exported object contains the validation schemas for authenticate, register,
+request, change and update. Also, it uses the Ramda package to check if the
+parameters is Nil or not. These validation schemas are built using various
+Yup validation functions, such as string(), trim(), email(), min(), required()
+and test(). These validation schemas are used to ensure that the input data meets
+certain requirements before it is processed by the application.
+*/
+
 const {isNil} = require('ramda');
 
 const yup = require('yup');
