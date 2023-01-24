@@ -7,6 +7,8 @@ const withFormatMessageForProduction = ifElse(
   identity
 );
 
+/* Remove req and next parameters from below function */
+
 module.exports = (error, , res, ) => 
   /**
      * @name error
