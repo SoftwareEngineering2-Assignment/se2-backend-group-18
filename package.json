@@ -6,7 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node src/index.js",
     "dev": "cross-env NODE_ENV=development nodemon src/index.js",
-    "test-first": "echo "Error: no test specified" && exit 0",
+    "test-first": "c8 ava \"**/test-first.test.js",
     "test": "c8 ava \"**/general.test.js\"",
     "test2": "c8 ava \"**/users.test.js\"",
     "test3": "c8 ava \"**/dashboards.test.js\"",
