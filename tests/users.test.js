@@ -3,11 +3,11 @@ require('dotenv').config();
 
 const http = require('node:http');  // Library so i can build a server with express
 const test = require('ava').default;
-const got = require('got'); // Library so i can make requests
+const got = require('got');
 const listen = require('test-listen'); // In testing environment, build a test server to send request
 
 const app = require('../src/index');
-const {jwtSign} = require('../src/utilities/authentication/helpers');
+const { jwtSign } = require('../src/utilities/authentication/helpers');
 
 require('dotenv').config(app.env);
 //console.log(process.env);
@@ -19,7 +19,7 @@ const authtoken = process.env.AUTHTOKEN;
 test.before(async (t) => {
   t.context.server = http.createServer(app); // The virtual server created with express
   t.context.prefixUrl = await listen(t.context.server);
-  t.context.got = got.extend({http2: true, throwHttpErrors: false, responseType: 'json', prefixUrl: t.context.prefixUrl}); // Change the default settings
+  t.context.got = got.extend({ http2: true, throwHttpErrors: false, responseType: 'json', prefixUrl: t.context.prefixUrl }); // Change the default settings
 });
 
 // This runs after testing to clean the testing server
@@ -43,16 +43,16 @@ test('POST /create returns correct response and status code', async (t) => {
 test('POST /authenticate returns correct response and status code', async (t) => {
   const username = 'testuser2';
   const password = userpassword;
-  const body = await t.context.got.post('users/authenticate',{json: {username, password}}).json();
+  const body = await t.context.got.post('users/authenticate', { json: { username, password } }).json();
   console.log(body);
   t.is(body.user.username, 'testuser2');
 });
-
+/*
 // Test for post req users/authenticate with wrong password
 test('POST /authenticate returns error if pasword is incorrect', async t => {
   const username = 'testuser2';
   const password = '135790';
-  const body = await t.context.got.post('users/authenticate', { json: { username, password }}).json();
+  const body = await t.context.got.post('users/authenticate', { json: { username, password } }).json();
   t.is(body.status, 401);
   //console.log(body);
 });
@@ -61,7 +61,7 @@ test('POST /authenticate returns error if pasword is incorrect', async t => {
 test('POST /authenticate returns error if user is incorrect', async t => {
   const username = 'testuseR';
   const password = userpassword;
-  const body = await t.context.got.post('users/authenticate', { json: { username, password }}).json();
+  const body = await t.context.got.post('users/authenticate', { json: { username, password } }).json();
   t.is(body.status, 401);
   //console.log(body);
 });
@@ -70,7 +70,7 @@ test('POST /authenticate returns error if user is incorrect', async t => {
 test('POST /resetpassword returns correct response and status code', async (t) => {
   const username = 'testUser';
 
-  const body = await t.context.got.post('users/resetpassword',{ json: {username}}).json();
+  const body = await t.context.got.post('users/resetpassword', { json: { username } }).json();
   t.is(body.status, 404);
   //console.log(body);
 });

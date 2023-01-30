@@ -25,8 +25,8 @@ router.get('/statistics',
       const views = await Dashboard.aggregate([
         {
           $group: {
-            _id: null, 
-            views: {$sum: '$views'}
+            _id: null,
+            views: { $sum: '$views' }
           }
         }
       ]);
@@ -52,8 +52,8 @@ router.get('/statistics',
 router.get('/test-url',
   async (req, res) => {
     try {
-      const {url} = req.query;
-      const {statusCode} = await got(url);
+      const { url } = req.query;
+      const { statusCode } = await got(url);
       return res.json({
         status: statusCode,
         active: (statusCode === 200),
@@ -69,25 +69,25 @@ router.get('/test-url',
 router.get('/test-url-request',
   async (req, res) => {
     try {
-      const {url, type, headers, body: requestBody, params} = req.query;
+      const { url, type, headers, body: requestBody, params } = req.query;
 
       let statusCode;
       let body;
       switch (type) {
         case 'GET':
-          ({statusCode, body} = await got(url, {
+          ({ statusCode, body } = await got(url, {
             headers: headers ? JSON.parse(headers) : {},
             searchParams: params ? JSON.parse(params) : {}
           }));
           break;
         case 'POST':
-          ({statusCode, body} = await got.post(url, {
+          ({ statusCode, body } = await got.post(url, {
             headers: headers ? JSON.parse(headers) : {},
             json: requestBody ? JSON.parse(requestBody) : {}
           }));
           break;
         case 'PUT':
-          ({statusCode, body} = await got.put(url, {
+          ({ statusCode, body } = await got.put(url, {
             headers: headers ? JSON.parse(headers) : {},
             json: requestBody ? JSON.parse(requestBody) : {}
           }));
@@ -96,7 +96,7 @@ router.get('/test-url-request',
           statusCode = 500;
           body = 'Something went wrong';
       }
-      
+
       return res.json({
         status: statusCode,
         response: body,

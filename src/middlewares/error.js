@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-const {pipe, has, ifElse, assoc, identity, allPass, propEq} = require('ramda');
+const { pipe, has, ifElse, assoc, identity, allPass, propEq } = require('ramda');
 
 const withFormatMessageForProduction = ifElse(
   allPass([propEq('status', 500), () => process.env.NODE_ENV === 'production']),
@@ -9,13 +9,13 @@ const withFormatMessageForProduction = ifElse(
 
 /* Remove req and next parameters from below function */
 
-module.exports = (error, , res, ) => 
+module.exports = (error, res) =>
   /**
      * @name error
      * @description Middleware that handles errors
      */
   pipe(
-    (e) => ({...e, message: e.message}),
+    (e) => ({ ...e, message: e.message }),
     ifElse(has('status'), identity, assoc('status', 500)),
     withFormatMessageForProduction,
     (fError) => res.status(fError.status).json(fError)
