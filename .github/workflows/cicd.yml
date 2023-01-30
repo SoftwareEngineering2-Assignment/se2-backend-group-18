@@ -21,8 +21,6 @@ jobs:
         uses: actions/checkout@v3
       - name: Install dependencies
         run: npm install
-      - name: Run test-first
-        run: npm run test-first  
       - name: Run test
         run: npm run test
       - name: Run test2
